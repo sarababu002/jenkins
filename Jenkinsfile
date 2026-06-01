@@ -1,16 +1,24 @@
 pipeline {
     agent any
+    environment{
+        NEW_VERSION = "3.4.1"
+    }
     stages {
         stage('Build') {
             steps {
                 echo "Building the application..."
-                echo "Build number is: ${env.BUILD_NUMBER}"
+                echo "Application Version: ${NEW_VERSION}"      
             }
         }
         stage('Test') {
+            when{
+                expression{
+                    BRANCH_NAME=="develop"
+                }
+            }
             steps {
                 echo "Running tests..."
-                echo "4 test cases runned"
+                echo "Inside develop"
                 echo "Job name is: ${env.JOB_NAME}"
             }
         }
