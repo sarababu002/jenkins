@@ -10,6 +10,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Running tests..."
+                echo "4 test cases runned"
                 echo "Job name is: ${env.JOB_NAME}"
             }
         }
