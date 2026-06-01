@@ -13,7 +13,7 @@ pipeline {
         stage('Test') {
             when{
                 expression{
-                    BRANCH_NAME=="develop"
+                    env.BRANCH_NAME=="develop"
                 }
             }
             steps {
@@ -26,6 +26,14 @@ pipeline {
             steps {
                 echo "Deploying to production..."
                 echo "Build URL: ${env.BUILD_URL}"
+                withCredential([usernamePassword(
+                    credentialId: 'ACCESS_KEY'
+                    usernameVariable: 'USERNAME'
+                    passwordVariable: 'PASSWORD'
+                )]){
+                    echo "Deploying with username ${USERNAME}"
+                    sh 'echo "Connecting with ${USERNAME}"'
+                }
             }
         }
     }
