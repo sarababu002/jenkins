@@ -4,6 +4,12 @@ pipeline {
         NEW_VERSION = "3.4.1"
     }
     stages {
+        stage('DEBUG'){
+            steps{
+                echo "BRANCH_NAME: ${env.BRANCH_NAME}"
+                echo "GIT_BRANCH: ${env.GIT_BRANCH}"
+            }
+        }
         stage('Build') {
             steps {
                 echo "Building the application..."
@@ -11,8 +17,6 @@ pipeline {
             }
         }
         stage('Test') {
-            echo "BRANCH_NAME: ${env.BRNACH_NAME}"
-            echo "GIT_BRANCH: ${env.GIT_BRANCH}"
             when{
                 expression{
                     env.GIT_BRANCH == "origin/develop"
@@ -34,7 +38,7 @@ pipeline {
                     passwordVariable: 'PASSWORD'
                 )]){
                     echo "Deploying with username ${USERNAME}"
-                    sh 'echo "Connecting with ${USERNAME}"'
+                    sh "echo 'Connecting with ${USERNAME}'"
                 }
             }
         }
