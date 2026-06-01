@@ -11,9 +11,11 @@ pipeline {
             }
         }
         stage('Test') {
+            echo "BRANCH_NAME: ${env.BRNACH_NAME}"
+            echo "GIT_BRANCH: ${env.GIT_BRANCH}"
             when{
                 expression{
-                    env.BRANCH_NAME=="develop"
+                    env.GIT_BRANCH == "origin/develop"
                 }
             }
             steps {
@@ -26,7 +28,7 @@ pipeline {
             steps {
                 echo "Deploying to production..."
                 echo "Build URL: ${env.BUILD_URL}"
-                withCredential([usernamePassword(
+                withCredentials([usernamePassword(
                     credentialsId: 'ACCESS_KEY',
                     usernameVariable: 'USERNAME',
                     passwordVariable: 'PASSWORD'
