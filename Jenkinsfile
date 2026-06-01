@@ -27,8 +27,8 @@ pipeline {
                 echo "Deploying to production..."
                 echo "Build URL: ${env.BUILD_URL}"
                 withCredential([usernamePassword(
-                    credentialsId: 'ACCESS_KEY'
-                    usernameVariable: 'USERNAME'
+                    credentialsId: 'ACCESS_KEY',
+                    usernameVariable: 'USERNAME',
                     passwordVariable: 'PASSWORD'
                 )]){
                     echo "Deploying with username ${USERNAME}"
