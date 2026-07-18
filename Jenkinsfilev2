@@ -16,7 +16,7 @@ pipeline{
       steps{
        echo'Deploying app'
        sh 'mkdir -p deploy'
-       sh 'cp app.py /deploy/app.py'
+       sh 'cp app.py deploy/app.py'
       }
     }
   }
