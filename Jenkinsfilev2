@@ -15,6 +15,7 @@ pipeline{
     stage('Deploy'){
       steps{
        echo'Deploying app'
+       sh 'mkdir -p deploy'
        sh 'cp app.py /deploy/app.py'
       }
     }
